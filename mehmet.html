@@ -1,0 +1,2001 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mehmet Halit Ekici - Portfolio</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #050505 100%);
+            color: #ffffff;
+            min-height: 100%;
+            overflow-x: hidden;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        html {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" /></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 12px 18px;
+            border-radius: 50px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .language-flag {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            filter: grayscale(0.3);
+        }
+
+        .language-flag:hover {
+            transform: scale(1.2) translateY(-3px);
+            filter: grayscale(0);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .language-flag.active {
+            filter: grayscale(0);
+            border-color: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(99, 102, 241, 0.4);
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.3);
+            margin: 0 auto 30px auto;
+            display: block;
+            transition: all 0.4s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 60px rgba(236, 72, 153, 0.5);
+            border-color: rgba(236, 72, 153, 0.6);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section {
+            height: 100%;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(99, 102, 241, 0.05) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(236, 72, 153, 0.05) 50%, transparent 52%);
+            background-size: 60px 60px;
+            animation: patternMove 20s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.6; }
+        }
+        
+        @keyframes patternMove {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 60px 60px, -60px 60px; }
+        }
+
+        .hero-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .hero-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            animation: slide 8s linear infinite;
+        }
+
+        .hero-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .hero-line:nth-child(2) { top: 40%; animation-delay: 2s; }
+        .hero-line:nth-child(3) { top: 60%; animation-delay: 4s; }
+        .hero-line:nth-child(4) { top: 80%; animation-delay: 6s; }
+
+        @keyframes slide {
+            0% { left: -100%; width: 0%; }
+            50% { width: 100%; }
+            100% { left: 100%; width: 0%; }
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            padding: 80px 40px;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 300;
+            margin: 50px 0 20px 0;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #ec4899 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 5s ease infinite;
+            position: relative;
+        }
+        
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #9ca3af;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+            text-transform: none;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 28px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-icon {
+            color: #6366f1;
+            margin-bottom: 4px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover .contact-icon {
+            color: #ec4899;
+            transform: scale(1.15);
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .contact-item:hover::before {
+            left: 100%;
+        }
+
+        .contact-item:hover {
+            background: rgba(40, 40, 40, 0.9);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .contact-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .contact-value {
+            font-size: 15px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .contact-value a {
+            color: #6366f1;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .contact-value a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #ec4899);
+            transition: width 0.3s;
+        }
+
+        .contact-value a:hover {
+            color: #ec4899;
+        }
+        
+        .contact-value a:hover::after {
+            width: 100%;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.4s;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 20, 0.98);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90%;
+            overflow-y: auto;
+            padding: 50px;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.4s;
+            box-shadow: 0 40px 100px rgba(99, 102, 241, 0.4);
+            border-radius: 24px;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            color: #6366f1;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+        }
+
+        .modal-close:hover {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-color: transparent;
+            color: #ffffff;
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .letter-header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .letter-title {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .letter-info {
+            font-size: 15px;
+            color: #9ca3af;
+            line-height: 1.8;
+        }
+
+        .letter-body {
+            color: #d1d5db;
+            line-height: 2;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .letter-body p {
+            margin-bottom: 25px;
+        }
+
+        .letter-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .letter-body li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .letter-body li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+            font-weight: 700;
+        }
+
+        .letter-signature {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(99, 102, 241, 0.1);
+            font-size: 17px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent);
+            margin: 80px 0;
+            position: relative;
+        }
+        
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #6366f1, #ec4899);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .section {
+            padding: 80px 60px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-number {
+            font-size: 140px;
+            font-weight: 800;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: absolute;
+            top: -50px;
+            left: 0;
+            z-index: 0;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 52px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: linear-gradient(180deg, #6366f1, #ec4899);
+            border-radius: 4px;
+            transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            background: rgba(40, 40, 40, 0.8);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(99, 102, 241, 0.3);
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+        
+        .card:hover::before {
+            height: 100%;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-title {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin: 0;
+            color: #ffffff;
+            background: linear-gradient(135deg, #ffffff, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-subtitle {
+            font-size: 15px;
+            color: #9ca3af;
+            margin-top: 8px;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+        }
+
+        .card-date {
+            font-size: 13px;
+            color: #9ca3af;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .card-description {
+            color: #d1d5db;
+            line-height: 1.8;
+            font-weight: 400;
+            font-size: 15px;
+        }
+
+        .card-description ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0 0;
+        }
+
+        .card-description li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .card-description li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #6366f1;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #ec4899);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-category:hover {
+            background: rgba(40, 40, 40, 0.8);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+        
+        .skill-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-category-title {
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #6366f1;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skill-item {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            padding: 14px 18px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-item:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-left-color: #6366f1;
+            padding-left: 24px;
+            transform: translateX(6px);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .achievement-card {
+            background: rgba(30, 30, 30, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 32px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 0;
+            background: linear-gradient(180deg, #6366f1, #ec4899);
+            transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .achievement-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.15), transparent);
+            transition: left 0.6s;
+        }
+
+        .achievement-card:hover::before {
+            height: 100%;
+        }
+        
+        .achievement-card:hover::after {
+            left: 100%;
+        }
+
+        .achievement-card:hover {
+            background: rgba(40, 40, 40, 0.8);
+            padding-left: 42px;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            transform: translateX(8px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .achievement-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 2px solid rgba(99, 102, 241, 0.2);
+            margin-top: 80px;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.5), rgba(26, 26, 26, 0.5));
+        }
+
+        .footer-text {
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #9ca3af;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 42px;
+                letter-spacing: 4px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 60px 30px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-number {
+                font-size: 80px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 30px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 30px;
+            }
+
+            .letter-title {
+                font-size: 24px;
+            }
+
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+                padding: 8px 12px;
+                gap: 10px;
+            }
+
+            .language-flag {
+                width: 28px;
+                height: 28px;
+                font-size: 20px;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(180deg, #4a90e2, transparent);
+            animation: scroll-fade 2s ease-in-out infinite;
+        }
+
+        @keyframes scroll-fade {
+            0%, 100% { opacity: 0; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 1; transform: translateX(-50%) translateY(10px); }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="grain-overlay"></div><!-- Language Switcher -->
+  <div class="language-switcher">
+   <div class="language-flag" data-lang="en" title="English">
+    🇬🇧
+   </div>
+   <div class="language-flag" data-lang="tr" title="Türkçe">
+    🇹🇷
+   </div>
+   <div class="language-flag" data-lang="ru" title="Русский">
+    🇷🇺
+   </div>
+  </div>
+  <main id="main-content"><!-- Content will be dynamically loaded here -->
+  </main><!-- Cover Letter Modal -->
+  <div class="modal-overlay" id="coverLetterModal" onclick="closeCoverLetter(event)">
+   <div class="modal-content" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeCoverLetter()">×</button>
+    <div id="cover-letter-content"></div>
+   </div>
+  </div>
+  <script>
+        let currentLanguage = 'en';
+
+        const translations = {
+            en: {
+                name: "MEHMET HALIT EKICI",
+                title: "Software Engineering Student | AI Enthusiast | Multilingual Developer",
+                location: "Kazan, Russia",
+                email: "mehhalit02@gmail.com",
+                phone: "+90 537 672 37 48",
+                phoneRu: "+7 927 403 96 79",
+                linkedin: "https://www.linkedin.com/in/mehmet-halit-e-604985208/",
+                github: "https://github.com/mhalitekici",
+                telegram: "https://t.me/mhalitekici",
+                
+                contactLabels: {
+                    location: "Location",
+                    email: "Email",
+                    phoneTr: "Phone TR",
+                    phoneRu: "Phone RU",
+                    linkedin: "LinkedIn",
+                    github: "GitHub",
+                    telegram: "Telegram",
+                    coverLetter: "Cover Letter"
+                },
+                
+                sections: {
+                    education: "Education",
+                    experience: "Experience",
+                    projects: "Projects",
+                    skills: "Technical Skills",
+                    languages: "Languages",
+                    volunteer: "Volunteer Experience",
+                    achievements: "Achievements & Honors",
+                    interests: "Interests",
+                    references: "References"
+                },
+                
+                education: [
+                    {
+                        title: "Kazan Federal University",
+                        subtitle: "Bachelor's Degree in Software Engineering",
+                        date: "Sep 2022 – Present",
+                        items: [
+                            "Full scholarship recipient based on entrance exam results",
+                            "GPA: ~3.2 / 4.0 (approx. 80 / 100)",
+                            "Expected Graduation: June 2027",
+                            "Completed Russian Preparatory Year with 90/100 average",
+                            "Actively involved in academic projects related to AI, data systems, and software architecture"
+                        ]
+                    },
+                    {
+                        title: "Kahta GAP Anatolian High School",
+                        subtitle: "Language Department",
+                        date: "Sep 2016 – Jun 2020",
+                        items: [
+                            "Graduated with 75/100 average",
+                            "Completed senior year in Russia through AFS Student Exchange Program",
+                            "Fluent in Russian and English through immersive academic experience",
+                            "Participated in cross-cultural academic activities"
+                        ]
+                    }
+                ],
+                
+                experience: [
+                    {
+                        title: "Elixir Boutique Hotel",
+                        subtitle: "Software Developer & Digital Marketing Specialist",
+                        date: "Summer 2025",
+                        items: [
+                            "Developed and integrated Dixora POS & QR Menu System",
+                            "Helped hotel achieve #1 TripAdvisor ranking in Kalkan",
+                            "Increased operational efficiency by 40%",
+                            "Awarded by management for innovation and digital impact"
+                        ]
+                    },
+                    {
+                        title: "NcN Lab - Kazan Federal University",
+                        subtitle: "Research Intern - Computational Mathematics & Information Technologies",
+                        date: "Jun 2024 – Jul 2024",
+                        items: [
+                            "Completed 1-month research internship at Institute of Computational Mathematics and Information Technologies",
+                            "Worked on computational algorithms and data processing systems",
+                            "Collaborated with research team on mathematical modeling projects",
+                            "Gained hands-on experience in academic research methodologies",
+                            "Applied theoretical knowledge to real-world computational problems"
+                        ]
+                    },
+                    {
+                        title: "Tourism & Hospitality",
+                        subtitle: "Bartender / Waiter / Service Assistant",
+                        date: "2012 – 2024",
+                        items: [
+                            "Worked in various hotels and restaurants during summer seasons",
+                            "Developed strong communication and leadership skills",
+                            "Gained experience in multicultural environments",
+                            "Combined hospitality with digital improvements"
+                        ]
+                    },
+                    {
+                        title: "CODSOFT",
+                        subtitle: "Python Development Intern",
+                        date: "2025",
+                        items: [
+                            "Completed online internship focused on Python projects",
+                            "Enhanced problem-solving and clean coding skills",
+                            "Worked on data handling and automation projects"
+                        ]
+                    }
+                ],
+                
+                projects: [
+                    {
+                        title: "Dixora",
+                        subtitle: "Hotel & Restaurant POS System",
+                        description: "Custom-built POS system with receipt printing, kitchen/bar routing, and daily reports. Used in Elixir Boutique Hotel."
+                    },
+                    {
+                        title: "DixonGPT",
+                        subtitle: "AI Psychological Support Chatbot",
+                        description: "ChatGPT API-based chatbot offering conversational emotional support for free. Designed for accessibility and mental well-being."
+                    },
+                    {
+                        title: "Mentra",
+                        subtitle: "Teacher Management Platform",
+                        description: "Full-stack platform for teachers to manage students, lessons, schedules, and messaging. Built with Flask and WebSockets."
+                    },
+                    {
+                        title: "VisualMate",
+                        subtitle: "Image Comparison Tool",
+                        description: "AI-powered visual recognition app that compares images and calculates differences. Built with OpenCV and Python."
+                    },
+                    {
+                        title: "La Cucaracha",
+                        subtitle: "Multiplayer Maze Game",
+                        description: "Real-time 2-player maze game built with Python socket library. Includes matchmaking and live communication."
+                    },
+                    {
+                        title: "Elixir QR Menu",
+                        subtitle: "Digital Menu System",
+                        description: "Custom multilingual QR-based digital menu fully integrated with Dixora POS system."
+                    }
+                ],
+                
+                skills: {
+                    programming: {
+                        title: "Programming Languages",
+                        items: ["Python", "C#", "SQL", "HTML/CSS", "JavaScript (Basic)"]
+                    },
+                    frameworks: {
+                        title: "Frameworks & Tools",
+                        items: ["Flask", "React", "Tkinter", "Git", "Docker", "MongoDB", "PostgreSQL", "SQLite", "OpenCV"]
+                    },
+                    expertise: {
+                        title: "Areas of Expertise",
+                        items: ["AI Integration", "API Development", "Network Programming", "UI/UX Logic", "Computer Vision"]
+                    },
+                    soft: {
+                        title: "Soft Skills",
+                        items: ["Leadership", "Problem Solving", "Creativity", "Team Collaboration", "Cross-Cultural Communication"]
+                    }
+                },
+                
+                languageSkills: [
+                    { name: "English", level: "C1 (Advanced)" },
+                    { name: "Russian", level: "B2 (Upper-Intermediate)" },
+                    { name: "Turkish", level: "Native" },
+                    { name: "Kurdish", level: "Native" }
+                ],
+                
+                volunteer: [
+                    {
+                        title: "AFS Intercultural Programs Turkey",
+                        subtitle: "Volunteer & Interviewer",
+                        date: "2020 – Present",
+                        items: [
+                            "Conducted student interviews for exchange programs",
+                            "Supported international students at airports and orientation camps",
+                            "Assisted in cultural adaptation, program logistics, and mentoring"
+                        ]
+                    }
+                ],
+                
+                achievements: [
+                    "Full Scholarship student at Kazan Federal University",
+                    "Improved Elixir Boutique Hotel's TripAdvisor ranking to #1 in Kalkan",
+                    "3rd place in Arm-Wrestling Competition (Russia)",
+                    "Passed Turkish Airlines English Interviews twice",
+                    "Awarded the KYK Government Scholarship for academic performance",
+                    "Recognized for digital innovation and AI project contributions"
+                ],
+                
+                interests: [
+                    "Artificial Intelligence",
+                    "Game Development",
+                    "Swimming",
+                    "Traveling",
+                    "Weightlifting",
+                    "Exploring New Cultures"
+                ],
+                
+                references: [
+                    {
+                        name: "Ahmet Aslan",
+                        title: "Software Engineer",
+                        location: "United Arab Emirates",
+                        phone: "+971 52 664 1990"
+                    },
+                    {
+                        name: "Uğur Kenar",
+                        title: "Hotel Manager",
+                        location: "Elixir Boutique Hotel, Kalkan (Turkey)",
+                        phone: "+90 532 378 05 90"
+                    }
+                ],
+                
+                footer: "Mehmet Halit Ekici — Portfolio 2025",
+                
+                coverLetter: {
+                    title: "Cover Letter",
+                    greeting: "Dear Hiring Manager,",
+                    paragraphs: [
+                        "I am writing to express my strong interest in opportunities related to software development, AI integration, or digital solutions. I am currently a third-year Software Engineering student at Kazan Federal University (Institute of Information Technology and Intelligent Systems), studying on a full scholarship in the English-taught program.",
+                        "My journey in both software and hospitality industries has shaped me into a creative, disciplined, and adaptive professional. Since the age of twelve, I have worked every summer in Antalya's tourism sector, gaining real-world experience in bartending, customer service, and operations. In 2025, I joined Elixir Boutique Hotel in Kalkan, where I developed and implemented a fully functional POS and QR Menu System (Dixora), integrating receipt printing and daily reporting features. This digital transformation helped the hotel reach the #1 position on TripAdvisor in the region and earned me a personal recognition from the management.",
+                        "Beyond hospitality, I have been actively involved in software projects that blend functionality with innovation:",
+                        "Alongside my technical skills in Python, C#, SQL, and Frontend tools, I possess strong cross-cultural communication skills developed through my AFS student exchange year in Tuymazy, Russia. I am fluent in English (C1), Russian (B2), Turkish, and Kurdish.",
+                        "In addition to my technical and academic pursuits, I volunteer with AFS Turkey, assisting with student interviews, airport transfers, and orientation programs. I am also a recipient of the KYK scholarship, which supports my studies in Russia.",
+                        "With a proven ability to manage both technical and human-centered projects, I am confident that my background in software engineering, digital marketing, and AI would allow me to make a meaningful contribution to your team. I would welcome the opportunity to discuss how my skills and projects align with your goals.",
+                        "Thank you for considering my application. I look forward to the possibility of contributing my creativity, dedication, and international perspective to your organization."
+                    ],
+                    projects: [
+                        "Dixora – Hotel & restaurant POS system with printer and daily report automation.",
+                        "DixonGPT – AI chatbot providing psychological support using ChatGPT API.",
+                        "Mentra – Teacher management and social platform for class planning, lesson tracking, and communication.",
+                        "VisualMate – A computer vision program capable of comparing two images and measuring differences precisely.",
+                        "La Cucaracha – A two-player Python socket-based maze game demonstrating real-time multiplayer logic."
+                    ],
+                    closing: "Sincerely,",
+                    signature: "Mehmet Halit Ekici"
+                }
+            },
+            
+            tr: {
+                name: "MEHMET HALİT EKİCİ",
+                title: "Yazılım Mühendisliği Öğrencisi | Yapay Zeka Meraklısı | Çok Dilli Geliştirici",
+                location: "Kazan, Rusya",
+                email: "mehhalit02@gmail.com",
+                phone: "+90 537 672 37 48",
+                phoneRu: "+7 927 403 96 79",
+                linkedin: "https://www.linkedin.com/in/mehmet-halit-e-604985208/",
+                github: "https://github.com/mhalitekici",
+                telegram: "https://t.me/mhalitekici",
+                
+                contactLabels: {
+                    location: "Konum",
+                    email: "E-posta",
+                    phoneTr: "Telefon TR",
+                    phoneRu: "Telefon RU",
+                    linkedin: "LinkedIn",
+                    github: "GitHub",
+                    telegram: "Telegram",
+                    coverLetter: "Ön Yazı"
+                },
+                
+                sections: {
+                    education: "Eğitim",
+                    experience: "Deneyim",
+                    projects: "Projeler",
+                    skills: "Teknik Yetenekler",
+                    languages: "Diller",
+                    volunteer: "Gönüllü Deneyimi",
+                    achievements: "Başarılar ve Ödüller",
+                    interests: "İlgi Alanları",
+                    references: "Referanslar"
+                },
+                
+                education: [
+                    {
+                        title: "Kazan Federal Üniversitesi",
+                        subtitle: "Yazılım Mühendisliği Lisans Derecesi",
+                        date: "Eylül 2022 – Devam Ediyor",
+                        items: [
+                            "Giriş sınavı sonuçlarına göre tam burs alan öğrenci",
+                            "Not Ortalaması: ~3.2 / 4.0 (yaklaşık 80 / 100)",
+                            "Beklenen Mezuniyet: Haziran 2027",
+                            "Rusça Hazırlık Yılını 90/100 ortalama ile tamamladı",
+                            "Yapay zeka, veri sistemleri ve yazılım mimarisi ile ilgili akademik projelerde aktif olarak yer aldı"
+                        ]
+                    },
+                    {
+                        title: "Kahta GAP Anadolu Lisesi",
+                        subtitle: "Dil Bölümü",
+                        date: "Eylül 2016 – Haziran 2020",
+                        items: [
+                            "75/100 ortalama ile mezun oldu",
+                            "Son sınıfı AFS Öğrenci Değişim Programı ile Rusya'da tamamladı",
+                            "Yoğun akademik deneyim sayesinde Rusça ve İngilizce'de akıcı",
+                            "Kültürlerarası akademik etkinliklere katıldı"
+                        ]
+                    }
+                ],
+                
+                experience: [
+                    {
+                        title: "Elixir Boutique Hotel",
+                        subtitle: "Yazılım Geliştirici ve Dijital Pazarlama Uzmanı",
+                        date: "Yaz 2025",
+                        items: [
+                            "Dixora POS ve QR Menü Sistemini geliştirdi ve entegre etti",
+                            "Otelin Kalkan'da TripAdvisor'da 1 numaraya ulaşmasına yardımcı oldu",
+                            "Operasyonel verimliliği %40 artırdı",
+                            "İnovasyon ve dijital etki için yönetim tarafından ödüllendirildi"
+                        ]
+                    },
+                    {
+                        title: "NcN Lab - Kazan Federal Üniversitesi",
+                        subtitle: "Araştırma Stajyeri - Hesaplamalı Matematik ve Bilgi Teknolojileri",
+                        date: "Haziran 2024 – Temmuz 2024",
+                        items: [
+                            "Hesaplamalı Matematik ve Bilgi Teknolojileri Enstitüsü'nde 1 aylık araştırma stajını tamamladı",
+                            "Hesaplamalı algoritmalar ve veri işleme sistemleri üzerinde çalıştı",
+                            "Matematiksel modelleme projeleri üzerinde araştırma ekibi ile işbirliği yaptı",
+                            "Akademik araştırma metodolojilerinde uygulamalı deneyim kazandı",
+                            "Teorik bilgiyi gerçek dünya hesaplama problemlerine uyguladı"
+                        ]
+                    },
+                    {
+                        title: "Turizm ve Konaklama",
+                        subtitle: "Barmen / Garson / Servis Görevlisi",
+                        date: "2012 – 2024",
+                        items: [
+                            "Yaz sezonlarında çeşitli otel ve restoranlarda çalıştı",
+                            "Güçlü iletişim ve liderlik becerileri geliştirdi",
+                            "Çok kültürlü ortamlarda deneyim kazandı",
+                            "Misafirperverliği dijital iyileştirmelerle birleştirdi"
+                        ]
+                    },
+                    {
+                        title: "CODSOFT",
+                        subtitle: "Python Geliştirme Stajyeri",
+                        date: "2025",
+                        items: [
+                            "Python projelerine odaklanan çevrimiçi stajı tamamladı",
+                            "Problem çözme ve temiz kodlama becerilerini geliştirdi",
+                            "Veri işleme ve otomasyon projeleri üzerinde çalıştı"
+                        ]
+                    }
+                ],
+                
+                projects: [
+                    {
+                        title: "Dixora",
+                        subtitle: "Otel ve Restoran POS Sistemi",
+                        description: "Fiş yazdırma, mutfak/bar yönlendirme ve günlük raporlar içeren özel yapım POS sistemi. Elixir Boutique Hotel'de kullanılıyor."
+                    },
+                    {
+                        title: "DixonGPT",
+                        subtitle: "Yapay Zeka Psikolojik Destek Chatbot'u",
+                        description: "ChatGPT API tabanlı, ücretsiz konuşma tarzında duygusal destek sunan chatbot. Erişilebilirlik ve zihinsel sağlık için tasarlandı."
+                    },
+                    {
+                        title: "Mentra",
+                        subtitle: "Öğretmen Yönetim Platformu",
+                        description: "Öğretmenlerin öğrencileri, dersleri, programları ve mesajlaşmayı yönetmesi için tam yığın platform. Flask ve WebSockets ile geliştirildi."
+                    },
+                    {
+                        title: "VisualMate",
+                        subtitle: "Görüntü Karşılaştırma Aracı",
+                        description: "Görüntüleri karşılaştıran ve farkları hesaplayan yapay zeka destekli görsel tanıma uygulaması. OpenCV ve Python ile geliştirildi."
+                    },
+                    {
+                        title: "La Cucaracha",
+                        subtitle: "Çok Oyunculu Labirent Oyunu",
+                        description: "Python socket kütüphanesi ile geliştirilmiş gerçek zamanlı 2 oyunculu labirent oyunu. Eşleştirme ve canlı iletişim içerir."
+                    },
+                    {
+                        title: "Elixir QR Menü",
+                        subtitle: "Dijital Menü Sistemi",
+                        description: "Dixora POS sistemi ile tamamen entegre edilmiş özel çok dilli QR tabanlı dijital menü."
+                    }
+                ],
+                
+                skills: {
+                    programming: {
+                        title: "Programlama Dilleri",
+                        items: ["Python", "C#", "SQL", "HTML/CSS", "JavaScript (Temel)"]
+                    },
+                    frameworks: {
+                        title: "Framework'ler ve Araçlar",
+                        items: ["Flask", "React", "Tkinter", "Git", "Docker", "MongoDB", "PostgreSQL", "SQLite", "OpenCV"]
+                    },
+                    expertise: {
+                        title: "Uzmanlık Alanları",
+                        items: ["Yapay Zeka Entegrasyonu", "API Geliştirme", "Ağ Programlama", "UI/UX Mantığı", "Bilgisayarlı Görü"]
+                    },
+                    soft: {
+                        title: "Kişisel Beceriler",
+                        items: ["Liderlik", "Problem Çözme", "Yaratıcılık", "Takım İşbirliği", "Kültürlerarası İletişim"]
+                    }
+                },
+                
+                languageSkills: [
+                    { name: "İngilizce", level: "C1 (İleri Düzey)" },
+                    { name: "Rusça", level: "B2 (Orta-İleri Düzey)" },
+                    { name: "Türkçe", level: "Anadil" },
+                    { name: "Kürtçe", level: "Anadil" }
+                ],
+                
+                volunteer: [
+                    {
+                        title: "AFS Kültürlerarası Programlar Türkiye",
+                        subtitle: "Gönüllü ve Görüşmeci",
+                        date: "2020 – Devam Ediyor",
+                        items: [
+                            "Değişim programları için öğrenci görüşmeleri yaptı",
+                            "Havalimanlarında ve oryantasyon kamplarında uluslararası öğrencilere destek oldu",
+                            "Kültürel adaptasyon, program lojistiği ve mentorlukta yardımcı oldu"
+                        ]
+                    }
+                ],
+                
+                achievements: [
+                    "Kazan Federal Üniversitesi'nde tam burslu öğrenci",
+                    "Elixir Boutique Hotel'in Kalkan'da TripAdvisor sıralamasını 1 numaraya yükseltti",
+                    "Bilek Güreşi Yarışması'nda 3. yer (Rusya)",
+                    "Türk Hava Yolları İngilizce Görüşmelerini iki kez geçti",
+                    "Akademik performans için KYK Devlet Bursu ile ödüllendirildi",
+                    "Dijital inovasyon ve yapay zeka proje katkıları için tanındı"
+                ],
+                
+                interests: [
+                    "Yapay Zeka",
+                    "Oyun Geliştirme",
+                    "Yüzme",
+                    "Seyahat",
+                    "Ağırlık Kaldırma",
+                    "Yeni Kültürleri Keşfetme"
+                ],
+                
+                references: [
+                    {
+                        name: "Ahmet Aslan",
+                        title: "Yazılım Mühendisi",
+                        location: "Birleşik Arap Emirlikleri",
+                        phone: "+971 52 664 1990"
+                    },
+                    {
+                        name: "Uğur Kenar",
+                        title: "Otel Müdürü",
+                        location: "Elixir Boutique Hotel, Kalkan (Türkiye)",
+                        phone: "+90 532 378 05 90"
+                    }
+                ],
+                
+                footer: "Mehmet Halit Ekici — Portfolio 2025",
+                
+                coverLetter: {
+                    title: "Ön Yazı",
+                    greeting: "Sayın İşe Alım Yöneticisi,",
+                    paragraphs: [
+                        "Yazılım geliştirme, yapay zeka entegrasyonu veya dijital çözümlerle ilgili fırsatlara olan güçlü ilgimi ifade etmek için yazıyorum. Şu anda Kazan Federal Üniversitesi'nde (Bilgi Teknolojileri ve Akıllı Sistemler Enstitüsü) İngilizce eğitim programında tam burslu olarak Yazılım Mühendisliği üçüncü sınıf öğrencisiyim.",
+                        "Hem yazılım hem de konaklama sektörlerindeki yolculuğum beni yaratıcı, disiplinli ve uyumlu bir profesyonel haline getirdi. On iki yaşımdan beri her yaz Antalya'nın turizm sektöründe çalışarak barmenlik, müşteri hizmetleri ve operasyonlarda gerçek dünya deneyimi kazandım. 2025'te Kalkan'daki Elixir Boutique Hotel'e katıldım ve burada fiş yazdırma ve günlük raporlama özelliklerini entegre eden tamamen işlevsel bir POS ve QR Menü Sistemi (Dixora) geliştirdim ve uyguladım. Bu dijital dönüşüm, otelin bölgede TripAdvisor'da 1 numaraya ulaşmasına yardımcı oldu ve yönetimden kişisel bir takdir kazandım.",
+                        "Konaklamanın ötesinde, işlevselliği yenilikle harmanlayan yazılım projelerinde aktif olarak yer aldım:",
+                        "Python, C#, SQL ve Frontend araçlarındaki teknik becerilerimin yanı sıra, Tuymazy, Rusya'daki AFS öğrenci değişim yılım boyunca geliştirdiğim güçlü kültürlerarası iletişim becerilerine sahibim. İngilizce (C1), Rusça (B2), Türkçe ve Kürtçe'de akıcıyım.",
+                        "Teknik ve akademik çalışmalarımın yanı sıra, AFS Türkiye ile gönüllü olarak öğrenci görüşmeleri, havalimanı transferleri ve oryantasyon programlarında yardımcı oluyorum. Ayrıca Rusya'daki eğitimimi destekleyen KYK bursunun alıcısıyım.",
+                        "Hem teknik hem de insan odaklı projeleri yönetme konusunda kanıtlanmış bir yeteneğe sahip olarak, yazılım mühendisliği, dijital pazarlama ve yapay zeka alanındaki geçmişimin ekibinize anlamlı bir katkı sağlayacağından eminim. Becerilerimin ve projelerimin hedeflerinizle nasıl uyumlu olduğunu tartışma fırsatını memnuniyetle karşılarım.",
+                        "Başvurumu değerlendirdiğiniz için teşekkür ederim. Yaratıcılığımı, özverimi ve uluslararası bakış açımı kuruluşunuza katkıda bulunma olasılığını dört gözle bekliyorum."
+                    ],
+                    projects: [
+                        "Dixora – Yazıcı ve günlük rapor otomasyonu ile otel ve restoran POS sistemi.",
+                        "DixonGPT – ChatGPT API kullanarak psikolojik destek sağlayan yapay zeka chatbot'u.",
+                        "Mentra – Sınıf planlaması, ders takibi ve iletişim için öğretmen yönetimi ve sosyal platform.",
+                        "VisualMate – İki görüntüyü karşılaştırabilen ve farkları hassas bir şekilde ölçebilen bir bilgisayarlı görü programı.",
+                        "La Cucaracha – Gerçek zamanlı çok oyunculu mantığı gösteren iki oyunculu Python socket tabanlı labirent oyunu."
+                    ],
+                    closing: "Saygılarımla,",
+                    signature: "Mehmet Halit Ekici"
+                }
+            },
+            
+            ru: {
+                name: "МЕХМЕТ ХАЛИТ ЭКИДЖИ",
+                title: "Студент программной инженерии | Энтузиаст ИИ | Многоязычный разработчик",
+                location: "Казань, Россия",
+                email: "mehhalit02@gmail.com",
+                phone: "+90 537 672 37 48",
+                phoneRu: "+7 927 403 96 79",
+                linkedin: "https://www.linkedin.com/in/mehmet-halit-e-604985208/",
+                github: "https://github.com/mhalitekici",
+                telegram: "https://t.me/mhalitekici",
+                
+                contactLabels: {
+                    location: "Местоположение",
+                    email: "Электронная почта",
+                    phoneTr: "Телефон TR",
+                    phoneRu: "Телефон RU",
+                    linkedin: "LinkedIn",
+                    github: "GitHub",
+                    telegram: "Telegram",
+                    coverLetter: "Сопроводительное письмо"
+                },
+                
+                sections: {
+                    education: "Образование",
+                    experience: "Опыт работы",
+                    projects: "Проекты",
+                    skills: "Технические навыки",
+                    languages: "Языки",
+                    volunteer: "Волонтёрский опыт",
+                    achievements: "Достижения и награды",
+                    interests: "Интересы",
+                    references: "Рекомендации"
+                },
+                
+                education: [
+                    {
+                        title: "Казанский федеральный университет",
+                        subtitle: "Степень бакалавра по программной инженерии",
+                        date: "Сентябрь 2022 – Настоящее время",
+                        items: [
+                            "Получатель полной стипендии на основе результатов вступительных экзаменов",
+                            "Средний балл: ~3.2 / 4.0 (примерно 80 / 100)",
+                            "Ожидаемый выпуск: июнь 2027",
+                            "Завершил подготовительный год по русскому языку со средним баллом 90/100",
+                            "Активно участвует в академических проектах, связанных с ИИ, системами данных и архитектурой программного обеспечения"
+                        ]
+                    },
+                    {
+                        title: "Анатолийская средняя школа Кахта ГАП",
+                        subtitle: "Языковое отделение",
+                        date: "Сентябрь 2016 – Июнь 2020",
+                        items: [
+                            "Окончил со средним баллом 75/100",
+                            "Завершил выпускной год в России по программе студенческого обмена AFS",
+                            "Свободно владеет русским и английским языками благодаря погружению в академическую среду",
+                            "Участвовал в межкультурных академических мероприятиях"
+                        ]
+                    }
+                ],
+                
+                experience: [
+                    {
+                        title: "Elixir Boutique Hotel",
+                        subtitle: "Разработчик программного обеспечения и специалист по цифровому маркетингу",
+                        date: "Лето 2025",
+                        items: [
+                            "Разработал и интегрировал систему POS и QR-меню Dixora",
+                            "Помог отелю достичь рейтинга №1 на TripAdvisor в Калкане",
+                            "Повысил операционную эффективность на 40%",
+                            "Награждён руководством за инновации и цифровое влияние"
+                        ]
+                    },
+                    {
+                        title: "Лаборатория NcN - Казанский федеральный университет",
+                        subtitle: "Научный стажёр - Вычислительная математика и информационные технологии",
+                        date: "Июнь 2024 – Июль 2024",
+                        items: [
+                            "Завершил 1-месячную научную стажировку в Институте вычислительной математики и информационных технологий",
+                            "Работал над вычислительными алгоритмами и системами обработки данных",
+                            "Сотрудничал с исследовательской группой над проектами математического моделирования",
+                            "Получил практический опыт в методологиях академических исследований",
+                            "Применил теоретические знания к реальным вычислительным задачам"
+                        ]
+                    },
+                    {
+                        title: "Туризм и гостеприимство",
+                        subtitle: "Бармен / Официант / Помощник по обслуживанию",
+                        date: "2012 – 2024",
+                        items: [
+                            "Работал в различных отелях и ресторанах в летние сезоны",
+                            "Развил сильные коммуникативные и лидерские навыки",
+                            "Получил опыт в мультикультурной среде",
+                            "Совместил гостеприимство с цифровыми улучшениями"
+                        ]
+                    },
+                    {
+                        title: "CODSOFT",
+                        subtitle: "Стажёр по разработке на Python",
+                        date: "2025",
+                        items: [
+                            "Завершил онлайн-стажировку, сосредоточенную на проектах Python",
+                            "Улучшил навыки решения проблем и чистого кодирования",
+                            "Работал над проектами обработки данных и автоматизации"
+                        ]
+                    }
+                ],
+                
+                projects: [
+                    {
+                        title: "Dixora",
+                        subtitle: "POS-система для отелей и ресторанов",
+                        description: "Специально созданная POS-система с печатью чеков, маршрутизацией на кухню/бар и ежедневными отчётами. Используется в Elixir Boutique Hotel."
+                    },
+                    {
+                        title: "DixonGPT",
+                        subtitle: "Чат-бот психологической поддержки на основе ИИ",
+                        description: "Чат-бот на основе ChatGPT API, предлагающий бесплатную разговорную эмоциональную поддержку. Разработан для доступности и психического благополучия."
+                    },
+                    {
+                        title: "Mentra",
+                        subtitle: "Платформа управления для учителей",
+                        description: "Полнофункциональная платформа для учителей для управления учениками, уроками, расписаниями и обменом сообщениями. Создана с использованием Flask и WebSockets."
+                    },
+                    {
+                        title: "VisualMate",
+                        subtitle: "Инструмент сравнения изображений",
+                        description: "Приложение визуального распознавания на основе ИИ, которое сравнивает изображения и вычисляет различия. Создано с использованием OpenCV и Python."
+                    },
+                    {
+                        title: "La Cucaracha",
+                        subtitle: "Многопользовательская игра-лабиринт",
+                        description: "Игра-лабиринт для 2 игроков в реальном времени, созданная с использованием библиотеки сокетов Python. Включает подбор игроков и живое общение."
+                    },
+                    {
+                        title: "Elixir QR Menu",
+                        subtitle: "Система цифрового меню",
+                        description: "Специальное многоязычное цифровое меню на основе QR-кода, полностью интегрированное с POS-системой Dixora."
+                    }
+                ],
+                
+                skills: {
+                    programming: {
+                        title: "Языки программирования",
+                        items: ["Python", "C#", "SQL", "HTML/CSS", "JavaScript (базовый)"]
+                    },
+                    frameworks: {
+                        title: "Фреймворки и инструменты",
+                        items: ["Flask", "React", "Tkinter", "Git", "Docker", "MongoDB", "PostgreSQL", "SQLite", "OpenCV"]
+                    },
+                    expertise: {
+                        title: "Области экспертизы",
+                        items: ["Интеграция ИИ", "Разработка API", "Сетевое программирование", "Логика UI/UX", "Компьютерное зрение"]
+                    },
+                    soft: {
+                        title: "Личные навыки",
+                        items: ["Лидерство", "Решение проблем", "Креативность", "Командная работа", "Межкультурная коммуникация"]
+                    }
+                },
+                
+                languageSkills: [
+                    { name: "Английский", level: "C1 (продвинутый)" },
+                    { name: "Русский", level: "B2 (выше среднего)" },
+                    { name: "Турецкий", level: "Родной" },
+                    { name: "Курдский", level: "Родной" }
+                ],
+                
+                volunteer: [
+                    {
+                        title: "AFS Межкультурные программы Турция",
+                        subtitle: "Волонтёр и интервьюер",
+                        date: "2020 – Настоящее время",
+                        items: [
+                            "Проводил собеседования со студентами для программ обмена",
+                            "Поддерживал иностранных студентов в аэропортах и ​​ориентационных лагерях",
+                            "Помогал в культурной адаптации, логистике программы и наставничестве"
+                        ]
+                    }
+                ],
+                
+                achievements: [
+                    "Студент с полной стипендией в Казанском федеральном университете",
+                    "Улучшил рейтинг Elixir Boutique Hotel на TripAdvisor до №1 в Калкане",
+                    "3-е место в соревновании по армрестлингу (Россия)",
+                    "Дважды прошёл собеседования на английском языке в Turkish Airlines",
+                    "Награждён государственной стипендией KYK за академические успехи",
+                    "Признан за цифровые инновации и вклад в проекты ИИ"
+                ],
+                
+                interests: [
+                    "Искусственный интеллект",
+                    "Разработка игр",
+                    "Плавание",
+                    "Путешествия",
+                    "Тяжёлая атлетика",
+                    "Изучение новых культур"
+                ],
+                
+                references: [
+                    {
+                        name: "Ахмет Аслан",
+                        title: "Инженер-программист",
+                        location: "Объединённые Арабские Эмираты",
+                        phone: "+971 52 664 1990"
+                    },
+                    {
+                        name: "Угур Кенар",
+                        title: "Менеджер отеля",
+                        location: "Elixir Boutique Hotel, Калкан (Турция)",
+                        phone: "+90 532 378 05 90"
+                    }
+                ],
+                
+                footer: "Мехмет Халит Экиджи — Портфолио 2025",
+                
+                coverLetter: {
+                    title: "Сопроводительное письмо",
+                    greeting: "Уважаемый менеджер по найму,",
+                    paragraphs: [
+                        "Я пишу, чтобы выразить свой сильный интерес к возможностям, связанным с разработкой программного обеспечения, интеграцией ИИ или цифровыми решениями. В настоящее время я студент третьего курса программной инженерии в Казанском федеральном университете (Институт информационных технологий и интеллектуальных систем), обучаюсь по программе на английском языке с полной стипендией.",
+                        "Мой путь в индустрии программного обеспечения и гостеприимства сформировал меня как творческого, дисциплинированного и адаптивного профессионала. С двенадцати лет я работал каждое лето в туристическом секторе Анталии, получая реальный опыт в барменстве, обслуживании клиентов и операциях. В 2025 году я присоединился к Elixir Boutique Hotel в Калкане, где разработал и внедрил полнофункциональную POS-систему и систему QR-меню (Dixora), интегрировав функции печати чеков и ежедневной отчётности. Эта цифровая трансформация помогла отелю достичь позиции №1 на TripAdvisor в регионе и принесла мне личное признание от руководства.",
+                        "Помимо гостеприимства, я активно участвовал в программных проектах, которые сочетают функциональность с инновациями:",
+                        "Наряду с моими техническими навыками в Python, C#, SQL и инструментах Frontend, я обладаю сильными навыками межкультурной коммуникации, развитыми во время моего года студенческого обмена AFS в Туймазах, Россия. Я свободно владею английским (C1), русским (B2), турецким и курдским языками.",
+                        "В дополнение к моим техническим и академическим занятиям, я работаю волонтёром в AFS Турция, помогая с собеседованиями студентов, трансферами в аэропорту и ориентационными программами. Я также являюсь получателем стипендии KYK, которая поддерживает мою учёбу в России.",
+                        "Обладая доказанной способностью управлять как техническими, так и ориентированными на человека проектами, я уверен, что мой опыт в программной инженерии, цифровом маркетинге и ИИ позволит мне внести значимый вклад в вашу команду. Я буду рад обсудить, как мои навыки и проекты соответствуют вашим целям.",
+                        "Благодарю вас за рассмотрение моей заявки. Я с нетерпением жду возможности внести свой вклад в вашу организацию своей креативностью, преданностью и международной перспективой."
+                    ],
+                    projects: [
+                        "Dixora – POS-система для отелей и ресторанов с автоматизацией печати и ежедневной отчётности.",
+                        "DixonGPT – Чат-бот ИИ, предоставляющий психологическую поддержку с использованием ChatGPT API.",
+                        "Mentra – Платформа управления и социальная платформа для учителей для планирования занятий, отслеживания уроков и общения.",
+                        "VisualMate – Программа компьютерного зрения, способная сравнивать два изображения и точно измерять различия.",
+                        "La Cucaracha – Игра-лабиринт для двух игроков на основе сокетов Python, демонстрирующая логику многопользовательской игры в реальном времени."
+                    ],
+                    closing: "С уважением,",
+                    signature: "Мехмет Халит Экиджи"
+                }
+            }
+        };
+
+        function renderContent(lang) {
+            const t = translations[lang];
+            
+            const mainContent = `
+                <div class="container">
+                    <section class="hero-section">
+                        <div class="hero-lines">
+                            <div class="hero-line"></div>
+                            <div class="hero-line"></div>
+                            <div class="hero-line"></div>
+                            <div class="hero-line"></div>
+                        </div>
+                        
+                        <div class="hero-content">
+                            <img src="logo.jpg" alt="Profile Photo" class="profile-photo">
+                            <h1>${t.name}</h1>
+                            <p class="subtitle">${t.title}</p>
+                            
+                            <div class="contact-grid">
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.location}</div>
+                                    <div class="contact-value">${t.location}</div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.email}</div>
+                                    <div class="contact-value"><a href="mailto:${t.email}">${t.email}</a></div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.phoneTr}</div>
+                                    <div class="contact-value">${t.phone}</div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.phoneRu}</div>
+                                    <div class="contact-value">${t.phoneRu}</div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.linkedin}</div>
+                                    <div class="contact-value"><a href="${t.linkedin}" target="_blank" rel="noopener noreferrer">Connect</a></div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.github}</div>
+                                    <div class="contact-value"><a href="${t.github}" target="_blank" rel="noopener noreferrer">View Profile</a></div>
+                                </div>
+                                <div class="contact-item">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.67-.52.36-.99.53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.48 1.03-.73 4.04-1.76 6.73-2.92 8.08-3.49 3.85-1.61 4.65-1.89 5.17-1.9.11 0 .37.03.54.17.14.12.18.27.2.38-.01.06.01.24 0 .38z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.telegram}</div>
+                                    <div class="contact-value"><a href="${t.telegram}" target="_blank" rel="noopener noreferrer">@mhalitekici</a></div>
+                                </div>
+                                <div class="contact-item" onclick="openCoverLetter()" style="cursor: pointer;">
+                                    <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z"/>
+                                    </svg>
+                                    <div class="contact-label">${t.contactLabels.coverLetter}</div>
+                                    <div class="contact-value" style="color: #6366f1;">View Letter</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="scroll-indicator"></div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">01</div>
+                            <h2 class="section-title">${t.sections.education}</h2>
+                        </div>
+                        
+                        <div class="content-grid">
+                            ${t.education.map(edu => `
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div>
+                                            <h3 class="card-title">${edu.title}</h3>
+                                            <p class="card-subtitle">${edu.subtitle}</p>
+                                        </div>
+                                        <div class="card-date">${edu.date}</div>
+                                    </div>
+                                    <div class="card-description">
+                                        <ul>
+                                            ${edu.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">02</div>
+                            <h2 class="section-title">${t.sections.experience}</h2>
+                        </div>
+                        
+                        <div class="content-grid">
+                            ${t.experience.map(exp => `
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div>
+                                            <h3 class="card-title">${exp.title}</h3>
+                                            <p class="card-subtitle">${exp.subtitle}</p>
+                                        </div>
+                                        <div class="card-date">${exp.date}</div>
+                                    </div>
+                                    <div class="card-description">
+                                        <ul>
+                                            ${exp.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">03</div>
+                            <h2 class="section-title">${t.sections.projects}</h2>
+                        </div>
+                        
+                        <div class="content-grid">
+                            ${t.projects.map(proj => `
+                                <div class="card">
+                                    <h3 class="card-title">${proj.title}</h3>
+                                    <p class="card-subtitle">${proj.subtitle}</p>
+                                    <div class="card-description">
+                                        ${proj.description}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section skills-section">
+                        <div class="section-header">
+                            <div class="section-number">04</div>
+                            <h2 class="section-title">${t.sections.skills}</h2>
+                        </div>
+                        
+                        <div class="skills-grid">
+                            ${Object.values(t.skills).map(category => `
+                                <div class="skill-category">
+                                    <h4 class="skill-category-title">${category.title}</h4>
+                                    <div class="skill-list">
+                                        ${category.items.map(item => `<div class="skill-item">${item}</div>`).join('')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+                    
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">05</div>
+                            <h2 class="section-title">${t.sections.languages}</h2>
+                        </div>
+                        
+                        <div class="achievements-grid">
+                            ${t.languageSkills.map(lang => `
+                                <div class="achievement-card">
+                                    <p class="achievement-text"><strong>${lang.name}</strong> — ${lang.level}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">06</div>
+                            <h2 class="section-title">${t.sections.volunteer}</h2>
+                        </div>
+                        
+                        <div class="content-grid">
+                            ${t.volunteer.map(vol => `
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div>
+                                            <h3 class="card-title">${vol.title}</h3>
+                                            <p class="card-subtitle">${vol.subtitle}</p>
+                                        </div>
+                                        <div class="card-date">${vol.date}</div>
+                                    </div>
+                                    <div class="card-description">
+                                        <ul>
+                                            ${vol.items.map(item => `<li>${item}</li>`).join('')}
+                                        </ul>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">07</div>
+                            <h2 class="section-title">${t.sections.achievements}</h2>
+                        </div>
+                        
+                        <div class="achievements-grid">
+                            ${t.achievements.map(achievement => `
+                                <div class="achievement-card">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#6366f1" style="margin-bottom: 12px;">
+                                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                                    </svg>
+                                    <p class="achievement-text">${achievement}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">08</div>
+                            <h2 class="section-title">${t.sections.interests}</h2>
+                        </div>
+                        
+                        <div class="achievements-grid">
+                            ${t.interests.map(interest => `
+                                <div class="achievement-card">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#6366f1" style="margin-bottom: 12px;">
+                                        <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+                                    </svg>
+                                    <p class="achievement-text">${interest}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <div class="divider"></div>
+
+                    <section class="section">
+                        <div class="section-header">
+                            <div class="section-number">09</div>
+                            <h2 class="section-title">${t.sections.references}</h2>
+                        </div>
+                        
+                        <div class="content-grid">
+                            ${t.references.map(ref => `
+                                <div class="card">
+                                    <h3 class="card-title">${ref.name}</h3>
+                                    <p class="card-subtitle">${ref.title}</p>
+                                    <div class="card-description">
+                                        <p style="margin-bottom: 10px;">${ref.location}</p>
+                                        <p style="color: #6366f1; display: flex; align-items: center; gap: 8px;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                            </svg>
+                                            ${ref.phone}
+                                        </p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </section>
+
+                    <footer class="footer">
+                        <p class="footer-text">${t.footer}</p>
+                    </footer>
+                </div>
+            `;
+            
+            document.getElementById('main-content').innerHTML = mainContent;
+            
+            // Update cover letter content
+            const coverLetterContent = `
+                <div class="letter-header">
+                    <h2 class="letter-title">${t.coverLetter.title}</h2>
+                    <div class="letter-info">
+                        <strong>${t.name}</strong><br>
+                        ${t.location}<br>
+                        📧 ${t.email} | ☎️ ${t.phone} | ${t.phoneRu}
+                    </div>
+                </div>
+
+                <div class="letter-body">
+                    <p><strong>${t.coverLetter.greeting}</strong></p>
+                    ${t.coverLetter.paragraphs.slice(0, 3).map(p => `<p>${p}</p>`).join('')}
+                    <ul>
+                        ${t.coverLetter.projects.map(proj => `<li>${proj}</li>`).join('')}
+                    </ul>
+                    ${t.coverLetter.paragraphs.slice(3).map(p => `<p>${p}</p>`).join('')}
+                    <div class="letter-signature">
+                        ${t.coverLetter.closing}<br>
+                        <strong>${t.coverLetter.signature}</strong>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('cover-letter-content').innerHTML = coverLetterContent;
+        }
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            renderContent(lang);
+            
+            // Update active flag
+            document.querySelectorAll('.language-flag').forEach(flag => {
+                flag.classList.remove('active');
+                if (flag.dataset.lang === lang) {
+                    flag.classList.add('active');
+                }
+            });
+        }
+
+        function openCoverLetter() {
+            const modal = document.getElementById('coverLetterModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCoverLetter(event) {
+            if (!event || event.target === document.getElementById('coverLetterModal')) {
+                const modal = document.getElementById('coverLetterModal');
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContent('en');
+            document.querySelector('.language-flag[data-lang="en"]').classList.add('active');
+            
+            // Add language switcher event listeners
+            document.querySelectorAll('.language-flag').forEach(flag => {
+                flag.addEventListener('click', () => {
+                    switchLanguage(flag.dataset.lang);
+                });
+            });
+        });
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99ced2f18491acfd',t:'MTc2Mjg3NDk1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
